@@ -4,7 +4,7 @@
     --text-secondary: #737373;
     --border-color: #dbdbdb;
     --btn-secondary-bg: #efefef;
-    --btn-secondary-hover: #dbdbdb;
+    --btn-secondary-hover: #e5e5e5;
     --link-color: #00376b;
 }
 
@@ -23,12 +23,12 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
-/* メインコンテナ（トップバーなしのすっきり仕様） */
+/* メインコンテナ */
 .profile-container {
     max-width: 935px;
     width: 100%;
-    margin: 30px auto 0;
-    padding: 0 20px;
+    margin: 0 auto;
+    padding: 30px 20px 0;
 }
 
 /* ヘッダー */
@@ -46,22 +46,22 @@ body {
 }
 
 .avatar-story-ring {
-    width: 156px;
-    height: 156px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
-    padding: 3px;
+    padding: 2px;
     background: linear-gradient(45deg, #fede5d, #f77737, #f13f56, #dd2a7b, #c32aa3, #9b5b4a);
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.avatar-img {
+.black-avatar {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-color: #000000;
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: 4px solid #fff;
 }
 
 .profile-info {
@@ -73,12 +73,12 @@ body {
     display: flex;
     align-items: center;
     margin-bottom: 20px;
-    gap: 12px;
+    gap: 20px;
 }
 
 .username {
     font-size: 20px;
-    font-weight: 400;
+    font-weight: 300;
 }
 
 .action-buttons {
@@ -94,6 +94,10 @@ body {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
+    height: 32px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn-secondary {
@@ -127,24 +131,12 @@ body {
 .full-name {
     font-size: 14px;
     font-weight: 600;
-}
-
-.category {
-    color: var(--text-secondary);
-    display: block;
     margin-bottom: 4px;
 }
 
 .bio-text {
-    white-space: pre-line; /* 改行を有効化 */
-}
-
-.bio-link {
-    color: var(--link-color);
-    text-decoration: none;
-    font-weight: 600;
-    display: block;
-    margin-top: 6px;
+    white-space: pre-line;
+    color: var(--text-primary);
 }
 
 .mobile-bio, .mobile-stats-list { display: none; }
@@ -179,19 +171,18 @@ body {
     border-top: 1px solid var(--text-primary);
 }
 
-/* 🎬 リール特化型グリッド（アスペクト比 9:16 ） */
+/* 🎬 リールグリッド */
 .gallery-grid.reels-style {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 16px; /* リールタブは通常の投稿グリッドより少し隙間が空いているのを再現 */
+    gap: 4px;
     padding-bottom: 40px;
 }
 
 .grid-item {
     position: relative;
-    aspect-ratio: 9 / 16; /* 縦長リール比率 */
-    background-color: var(--btn-secondary-bg);
-    border-radius: 4px; /* 近年のリールグリッドは角がほんのり丸い */
+    aspect-ratio: 9 / 16;
+    background-color: #fafafa;
     overflow: hidden;
     cursor: pointer;
 }
@@ -202,34 +193,31 @@ body {
     object-fit: cover;
 }
 
-/* 再生回数オーバーレイ表示 */
 .reel-overlay {
     position: absolute;
-    bottom: 10px;
-    left: 10px;
+    bottom: 8px;
+    left: 8px;
     color: #fff;
     font-weight: 600;
-    font-size: 13px;
+    font-size: 12px;
     display: flex;
     align-items: center;
     gap: 4px;
-    text-shadow: 0px 1px 4px rgba(0, 0, 0, 0.6);
+    text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.8);
 }
 
-.grid-item:hover img {
-    filter: brightness(0.9);
-}
-
-/* 📱 スマホ表示対応 */
+/* 📱 スマホWeb版への完全最適化 */
 @media (max-width: 735px) {
     .profile-container {
-        margin-top: 0;
         padding: 0;
+        margin-top: 0;
     }
 
     .profile-header {
-        padding: 16px 16px 0;
+        padding: 14px 16px 4px;
         margin-bottom: 0;
+        display: flex;
+        align-items: center;
     }
 
     .avatar-container {
@@ -239,14 +227,18 @@ body {
     }
 
     .avatar-story-ring {
-        width: 80px;
-        height: 80px;
+        width: 77px;
+        height: 77px;
         padding: 2px;
+    }
+    
+    .black-avatar {
+        border: 2px solid #fff;
     }
 
     .profile-info {
         flex-grow: 1;
-        padding-left: 20px;
+        padding-left: 24px;
     }
 
     .info-top-row {
@@ -256,29 +248,48 @@ body {
         margin-bottom: 0;
     }
 
+    .username {
+        font-size: 20px;
+        font-weight: 400;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        max-width: 200px;
+    }
+
     .action-buttons {
         width: 100%;
+        gap: 6px;
     }
 
     .btn {
         flex: 1;
-        text-align: center;
-        padding: 6px 0;
-        font-size: 13px;
+        height: 32px;
+        padding: 0;
+        font-size: 14px;
+        border-radius: 8px;
     }
 
     .stats-list, .bio-container { display: none; }
 
+    /* スマホ専用バイオ配置 */
     .mobile-bio {
         display: block;
-        padding: 16px 16px 0;
+        padding: 4px 16px 12px;
+        font-size: 14px;
     }
 
+    .mobile-bio .full-name {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 2px;
+    }
+
+    /* スマホ版ステータスバー（数値の並び） */
     .mobile-stats-list {
         display: flex;
         list-style: none;
         border-top: 1px solid var(--border-color);
-        margin-top: 16px;
         padding: 12px 0;
         text-align: center;
     }
@@ -289,32 +300,49 @@ body {
         flex-direction: column;
         font-size: 13px;
         color: var(--text-secondary);
+        line-height: 1.2;
     }
 
     .mobile-stats-list strong {
         color: var(--text-primary);
-        font-size: 15px;
+        font-size: 16px;
+        font-weight: 600;
     }
 
+    /* タブメニューのスマホ最適化 */
     .tabs-container {
         gap: 0;
         justify-content: space-around;
+        border-bottom: none;
     }
 
     .tab-btn span { display: none; }
     
     .tab-btn {
-        font-size: 20px;
         padding: 12px 0;
         flex: 1;
         justify-content: center;
+        border-top: 1px solid transparent;
+    }
+    
+    .tab-btn.active {
+        border-top: 1px solid var(--text-primary);
+        color: var(--text-primary);
     }
 
-    /* スマホ版リールグリッドは外枠に隙間を作らずピッタリ1pxに変化 */
+    /* スマホ版リールグリッドは隙間1pxピクセル */
     .gallery-grid.reels-style {
         gap: 1px;
+        padding-bottom: 20px;
     }
+    
     .grid-item {
         border-radius: 0;
+    }
+    
+    .reel-overlay {
+        bottom: 6px;
+        left: 6px;
+        font-size: 11px;
     }
 }
